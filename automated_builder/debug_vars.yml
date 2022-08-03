@@ -1,0 +1,19 @@
+---
+- name: Debug VARS
+  hosts: vps_runner
+  gather_facts: false
+  vars_files:
+    - ./vars/main.yml
+
+  tasks:
+    - name: Debug where am I?
+      shell: "pwd && ls -a"
+      delegate_to: localhost
+
+    - name: Debug VPS_IP
+      shell: cat vps_ip
+      delegate_to: localhost
+
+    - name: Debug SSH
+      shell: cat ./ssh/ansible_key
+      delegate_to: localhost

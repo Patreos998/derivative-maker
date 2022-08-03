@@ -1,0 +1,12 @@
+---
+- name: Clean existing gateway VM
+  shell: "/home/ansible/derivative-maker/derivative-maker --flavor whonix-gateway-xfce --target virtualbox --clean > /home/ansible/build.log 2>&1"
+
+- name: Clean existing workstation VM
+  shell: "/home/ansible/derivative-maker/derivative-maker --flavor whonix-workstation-xfce --target virtualbox --clean >> /home/ansible/build.log 2>&1"
+    
+- name: Build new gateway VM
+  shell: "/home/ansible/derivative-maker/derivative-maker --flavor whonix-gateway-xfce --target virtualbox --build >> /home/ansible/build.log 2>&1"
+
+- name: Build new workstation VM
+  shell: "/home/ansible/derivative-maker/derivative-maker --flavor whonix-workstation-xfce --target virtualbox --build >> /home/ansible/build.log 2>&1"

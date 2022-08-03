@@ -1,0 +1,23 @@
+name: Build Commit VMs
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ansible
+    - name: Run automated builder
+      env:
+        ANSIBLE_VAULT_PASSWORD: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
+        REPO_URL: ${{ github.repository }}
+      run: |
+        ./automated_builder/run_automated_builder.sh $ANSIBLE_VAULT_PASSWORD

@@ -1,0 +1,23 @@
+---
+- name: Build commit VMs
+  hosts: vps_runner
+  gather_facts: true
+  vars_files:
+    - ../vars/main.yml
+
+  tasks:
+    - name: Install dependencies
+      block:
+        - name: Install dependencies
+          include_tasks: install_dependencies.yml
+      become: true
+
+    - name: Install source and submodules
+      block:
+        - name: Install source
+          include_tasks: install_source.yml
+
+    - name: Create VM from commit
+      block:
+        - name: Create VM
+          include_tasks: create_vm.yml

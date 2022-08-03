@@ -22,3 +22,8 @@ debian/*.debhelper*
 debian/*.substvars
 debian/*.init
 debian/*.default
+
+# ignore ansible local environment configuration files
+.local_ssh/
+ansible_vault_password
+
