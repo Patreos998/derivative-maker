@@ -1,0 +1,12 @@
+---
+- name: Register existing VMs
+  shell: "VBoxManage list vms"
+  register: existing_vms 
+
+- name: Delete gateway VM
+  shell: "VBoxManage unregistervm Whonix-Gateway-XFCE --delete"
+  when: "'Whonix-Gateway-XFCE' in existing_vms.stdout"
+
+- name: Delete workstation VM
+  shell: "VBoxManage unregistervm Whonix-Workstation-XFCE --delete"
+  when: "'Whonix-Workstation-XFCE' in existing_vms.stdout"
