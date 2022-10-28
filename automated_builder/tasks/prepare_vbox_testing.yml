@@ -1,0 +1,20 @@
+---
+- name: Get graphical target default
+  cmd:  "systemctl get-default"
+  register: systemdefault
+  become: true
+
+  block:
+    - name: Install apt packages
+      apt:
+        pkg:
+          - task-xfce-desktop
+        update_cache: true
+    
+    - name: Upgrade apt packages
+      apt:
+        upgrade: full
+    
+    - name: "Set default to graphical target"
+      command: "systemctl set-default graphical.target"
+  when: "'graphical' not in systemdefault.stdout"
