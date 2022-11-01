@@ -1,6 +1,6 @@
 ---
 - name: Get graphical target default
-  cmd:  "systemctl get-default"
+  shell:  "systemctl get-default"
   register: systemdefault
 
 - name: Install GUI
