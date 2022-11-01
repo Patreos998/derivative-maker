@@ -3,6 +3,7 @@
   cmd:  "systemctl get-default"
   register: systemdefault
 
+- name: Install GUI
   block:
     - name: Install apt packages
       apt:
@@ -16,7 +17,7 @@
     
     - name: "Set default to graphical target"
       command: "systemctl set-default graphical.target"
-
+    
     - name: Reboot VPS for stray loop devices
       reboot:
         reboot_timeout: 60
