@@ -3,6 +3,10 @@
   shell:  "systemctl get-default"
   register: systemdefault
 
+- name: Debug graphical target
+  debug:
+    var: systemdefault
+
 - name: Install GUI
   block:
     - name: Install apt packages
